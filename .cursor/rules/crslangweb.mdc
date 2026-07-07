@@ -1,0 +1,13 @@
+---
+description: CRSEditor Lite — OWASP CRS rule editor SPA
+alwaysApply: true
+---
+
+Read [AGENTS.md](../AGENTS.md) before making changes.
+
+- Client-only React app; rules in memory, no backend
+- SecLang/CRSLang via `public/wasm/` crslang; API in `src/lib/crslangWasm.ts`
+- Edit model: `ParsedRule` in `src/types/rules.ts`
+- CRS schema/UI options: `src/constants/crsRuleSchema.ts`
+- Do not modify `documentation/` submodule during app work
+- Code and comments in English; minimal diffs
