@@ -3,10 +3,15 @@ export function autoContentLength(request: string): string {
   const normalized = normalizeLineEndings(request)
   const sp = normalized.split('\n\n', 2)
   if (sp.length > 1) {
-    const bodyLength = new TextEncoder().encode(sp[1]).length
+    const bodyLength = httpBodyByteLength(sp[1])
     return normalized.replace(regex, `Content-Length: ${bodyLength}\n`)
   }
   return normalized
+}
+
+function httpBodyByteLength(body: string): number {
+  if (!body) return 0
+  return new TextEncoder().encode(body.split('\n').join('\r\n')).length
 }
 
 function normalizeLineEndings(content: string): string {

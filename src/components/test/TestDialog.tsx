@@ -128,13 +128,16 @@ export function TestDialog({ open, onOpenChange, rules }: TestDialogProps) {
         return
       }
 
+      const trimmedDataFileName = dataFileName.trim()
+      const trimmedDataFileContent = dataFileContent.trim()
+
       const analysis = await runCorazaTest(
         setupSecLang,
         seclang.data,
         req,
         response,
-        dataFileName.trim() || dataFileContent.trim()
-          ? [{ name: dataFileName, content: dataFileContent }]
+        trimmedDataFileName && trimmedDataFileContent
+          ? [{ name: trimmedDataFileName, content: trimmedDataFileContent }]
           : [],
       )
       setResult(analysis)
