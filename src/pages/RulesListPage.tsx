@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ExportDialog } from '@/components/import-export/ExportDialog'
 import { ImportDialog } from '@/components/import-export/ImportDialog'
+import { TestDialog } from '@/components/test/TestDialog'
 import { RulesTable } from '@/components/rules/RulesTable'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -16,6 +17,7 @@ export function RulesListPage() {
   const [query, setQuery] = useState('')
   const [importOpen, setImportOpen] = useState(false)
   const [exportOpen, setExportOpen] = useState(false)
+  const [testOpen, setTestOpen] = useState(false)
 
   const filteredRules = useMemo(() => {
     const normalized = query.trim().toLowerCase()
@@ -35,6 +37,9 @@ export function RulesListPage() {
           <Button variant="outline" onClick={() => setImportOpen(true)}>{t('rulesList.import')}</Button>
           <Button variant="outline" onClick={() => setExportOpen(true)} disabled={rules.length === 0}>
             {t('rulesList.exportAll')}
+          </Button>
+          <Button variant="outline" onClick={() => setTestOpen(true)} disabled={rules.length === 0}>
+            {t('rulesList.test')}
           </Button>
         </div>
       </div>
@@ -68,6 +73,7 @@ export function RulesListPage() {
         onImport={(incoming) => importRules(incoming)}
       />
       <ExportDialog open={exportOpen} onOpenChange={setExportOpen} rules={rules} />
+      <TestDialog open={testOpen} onOpenChange={setTestOpen} rules={rules} />
     </div>
   )
 }

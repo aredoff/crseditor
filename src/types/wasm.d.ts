@@ -13,4 +13,11 @@ interface Window {
   Go: typeof Go
   seclangToCRSLang: (content: string) => WasmTranslationResult
   crslangToSeclang: (yaml: string) => WasmTranslationResult
+  corazaTest: (
+    setupSecLang: string,
+    userRules: string,
+    request: string,
+    response: string,
+    dataFilesJson: string,
+  ) => import('@/types/coraza').CorazaTestResult
 }
