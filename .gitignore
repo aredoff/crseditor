@@ -16,6 +16,7 @@ dist-ssr
 /docs
 /*.txt
 /*.md
+!README.md
 
 # Editor directories and files
 .vscode/*
